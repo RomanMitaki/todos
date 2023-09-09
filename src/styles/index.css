@@ -1,11 +1,11 @@
-@import "reset.css";
-@import "variables/global.css";
-@import "themes/dark.css";
-@import "themes/light.css";
+@import url("reset.css");
+@import url("variables/global.css");
+@import url("themes/dark.css");
+@import url("themes/light.css");
 
 .app {
-    font-size: var(--font-m);
-    background: var(--bg-color, #e8e8ea);
-    color: var(--primary-color, red);
-    min-height: 100vh;
+  font-size: var(--font-m);
+  background: var(--bg-color, #e8e8ea);
+  color: var(--primary-color, red);
+  min-height: 100vh;
 }
