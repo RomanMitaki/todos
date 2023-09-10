@@ -5,11 +5,16 @@
 
 .app {
   font: var(--font-m);
-  background: var(--bg-color, #e8e8ea);
+  background: var(--bg-color-main);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-size-adjust: 100%;
   text-rendering: optimizelegibility;
-  color: var(--primary-color, red);
+  color: var(--primary-color);
   min-height: 100vh;
+}
+
+h1 {
+  font: var(--font-l);
+  margin: 0;
 }

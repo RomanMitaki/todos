@@ -1,0 +1,9 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+  border: 2px solid var(--inner-borders);
+  border-radius: 4px;
+}

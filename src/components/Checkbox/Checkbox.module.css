@@ -1,0 +1,17 @@
+.checkbox {
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.checkbox__custom {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--inner-borders);
+  border-radius: 4px;
+}
+
+

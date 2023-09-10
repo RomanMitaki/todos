@@ -1,8 +1,10 @@
 .app.light {
-  --bg-color: linear-gradient(
-    90deg,
-    rgb(209 203 234) 0%,
-    rgb(107 108 128) 100%
-  );
+  --bg-color-main: #edc373;
+  --bg-color-secondary: #b18f6a;
+  --primary-color: #86a1a9;
+  --inner-borders: #6667AB;
+  --placeholder-color: #df88b7;
+  --input-color: #e4445e;
+  --bg-color-btn: #6667AB;
 
 }
