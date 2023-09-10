@@ -10,6 +10,6 @@
     // the "parserOptions.project" error
     ".eslintrc.js",
     "webpack.config.ts",
-    "global.d.ts"
+    "global.d.ts",
    ]
 }

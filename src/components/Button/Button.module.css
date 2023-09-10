@@ -1,0 +1,14 @@
+.button {
+  cursor: pointer;
+  background-color: transparent;
+
+}
+
+.clear {
+  padding: 0;
+  border: none;
+  background: none;
+  outline: none;
+  width: 20px;
+  height: 20px;
+}

@@ -1,8 +1,8 @@
 .app.dark {
-  --bg-color: #090949;
-  --inverted-bg-color: #e8e8ea;
-  --primary-color: #049604;
-  --secondary-color: #04ff04;
-  --inverted-primary-color: #0232c2;
-  --inverted-secondary-color: #0449e0;
+  --bg-color: linear-gradient(
+    90deg,
+    rgb(55 55 222) 0%,
+    rgb(4 5 22) 100%
+  );
+
 }
