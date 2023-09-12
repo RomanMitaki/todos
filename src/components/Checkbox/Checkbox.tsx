@@ -17,7 +17,7 @@ const Checkbox = () => {
                 }}
             />
             <span className={classNames(classes.checkbox__custom)}>
-                {isChecked ? <CheckIcon/> : null}
+               {isChecked ? <CheckIcon/> : null}
             </span>
         </label>
   )
