@@ -1,4 +1,4 @@
-import React, { type ChangeEvent, type FormEvent, useState } from 'react'
+import React, { type ChangeEvent, type FormEvent, useEffect, useRef, useState } from 'react'
 import classes from './ToDoForm.module.css'
 import { Button } from '../Button/Button'
 import { classNames } from '../../assets/classNames/classNames'
@@ -12,13 +12,17 @@ interface ToDoFormProps {
 const ToDoForm = ({ onSubmit }: ToDoFormProps) => {
   const [input, setInput] = useState<string>('')
 
+  const inputRef = useRef<HTMLInputElement>(null)
+  // console.log(inputRef)
+  useEffect(() => {
+    inputRef.current?.focus()
+  })
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value)
   }
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-
     onSubmit({
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment
       id: uuidv4(),
@@ -33,6 +37,9 @@ const ToDoForm = ({ onSubmit }: ToDoFormProps) => {
                     className={classes.formInput}
                     placeholder={'What needs to be done?'}
                     onChange={handleChange}
+                    ref={inputRef}
+                    value={input}
+                    name='text'
                 />
                 <Button className={classes.formButton}>Add</Button>
         </form>

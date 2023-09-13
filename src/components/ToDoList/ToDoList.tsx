@@ -11,21 +11,23 @@ const ToDoList = () => {
 
   const addTodo = (todo: IToDo) => {
     if (!todo.text || /^\s*$/.test(todo.text)) {
+      console.log('oops')
       return
     }
-
     const newTodos = [todo, ...todos]
-
     setTodos(newTodos)
-    console.log(...todos)
   }
-  console.log(todos)
+
   return (
         <div className={classNames(classes.page, {}, [])}>
             <h1>todos</h1>
             <ToDoForm onSubmit={addTodo}/>
             <div>
-                <ToDo/>
+                {todos.length
+                  ? todos.map((todo, index) => (
+                    <ToDo key={index}/>
+                  ))
+                  : null}
             </div>
             <NavBar/>
         </div>
