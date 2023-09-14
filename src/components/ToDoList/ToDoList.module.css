@@ -15,3 +15,9 @@
   box-shadow:  0 5px 10px 0 rgb(0 0 0 / 70%);
   background: var(--bg-color-secondary);
 }
+
+.todos__wrapper {
+  display: grid;
+  gap: .5em;
+  overflow: scroll;
+}

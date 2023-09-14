@@ -22,7 +22,7 @@ const ToDoList = () => {
         <div className={classNames(classes.page, {}, [])}>
             <h1>todos</h1>
             <ToDoForm onSubmit={addTodo}/>
-            <div>
+            <div className={classNames(classes.todos__wrapper)}>
                 {todos.length
                   ? todos.map((todo, index) => (
                     <ToDo key={index}/>

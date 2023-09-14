@@ -12,7 +12,7 @@
   height: 20px;
   border: 2px solid var(--inner-borders);
   border-radius: 4px;
-
+  cursor: pointer;
 }
 
 
