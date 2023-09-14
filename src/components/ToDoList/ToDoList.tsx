@@ -25,7 +25,7 @@ const ToDoList = () => {
             <div className={classNames(classes.todos__wrapper)}>
                 {todos.length
                   ? todos.map((todo, index) => (
-                    <ToDo key={index}/>
+                    <ToDo text={todo.text} key={index}/>
                   ))
                   : null}
             </div>

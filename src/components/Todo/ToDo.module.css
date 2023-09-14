@@ -10,15 +10,21 @@
 
 .text {
   margin: 0;
-  flex-grow: 1;
   padding: 0 1em;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  flex-grow: 1;
+  max-width: 614px;
 }
 
 .btn__wrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 60px;
   height: 100%;
   align-items: center;
+  width: 60px;
 }

@@ -17,7 +17,10 @@
 }
 
 .todos__wrapper {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: .5em;
-  overflow: scroll;
+  overflow: auto;
+  overflow-x: hidden;
+  width: 100%;
 }
