@@ -41,7 +41,9 @@ const ToDoForm = ({ onSubmit }: ToDoFormProps) => {
                     value={input}
                     name='text'
                 />
-                <Button className={classes.formButton}>Add</Button>
+          <Button className={classes.formButton}>
+            <span className={classNames(classes.formButton__accent)}>Add</span>
+          </Button>
         </form>
   )
 }

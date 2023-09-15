@@ -15,6 +15,7 @@
   background: transparent;
   color: var(--input-color);
   display: block;
+  box-sizing: border-box;
 }
 
 .formInput::placeholder {
@@ -27,10 +28,44 @@
   border-bottom: 2px solid var(--inner-borders);
   border-right: 2px solid var(--inner-borders);
   border-radius: 0 4px 4px 0;
-  color: var(--input-color);
   background: var(--bg-color-btn);
   text-transform: capitalize;
   display: block;
   width: 20%;
+  height: 100%;
+  transition: opacity;
+  position: relative;
 }
+
+.formButton::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: var(--bg-color-btn-secondary);
+  transition: width 1s ease-in-out;
+
+}
+
+.formButton:hover {
+  opacity: 1;
+}
+
+.formButton:hover::after {
+  width: 100%;
+
+}
+
+.formButton__accent {
+  color: var(--input-color);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  display: block;
+}
+
 
