@@ -9,18 +9,20 @@ import { RiDeleteBin6Line } from 'react-icons/ri'
 interface ToDoProps {
   className?: string
   text?: string
+  delete: (id: string) => void
+  id: string
 }
 
-const ToDo = ({ text }: ToDoProps) => {
+const ToDo = (props: ToDoProps) => {
   return (
         <div className={classNames(classes.wrapper)}>
             <Checkbox/>
-            <p className={classNames(classes.text)}>{text}</p>
+            <p className={classNames(classes.text)}>{props.text}</p>
             <div className={classes.btn__wrapper}>
                 <Button>
                     <FiEdit2 size={'24px'} />
                 </Button>
-                <Button>
+                <Button onClick={() => { props.delete(props.id) }}>
                     <RiDeleteBin6Line size={'24px'} />
                 </Button>
             </div>

@@ -8,6 +8,7 @@ import { type IToDo, type IToDos } from '../../types/types'
 
 const ToDoList = () => {
   const [todos, setTodos] = useState<IToDos>([])
+  const [deleted, setDeleted] = useState<IToDos>([])
 
   const addTodo = (todo: IToDo) => {
     if (!todo.text || /^\s*$/.test(todo.text)) {
@@ -18,6 +19,14 @@ const ToDoList = () => {
     setTodos(newTodos)
   }
 
+  const deleteTodo = (id: string) => {
+    const newTodos = [...todos].filter(todo => todo.id !== id)
+    const deletedTodos = [...todos].filter(todo => todo.id === id)
+    setTodos(newTodos)
+    setDeleted(deletedTodos)
+  }
+  console.log(deleted)
+  console.log(todos)
   return (
         <div className={classNames(classes.page, {}, [])}>
             <h1>todos</h1>
@@ -25,7 +34,10 @@ const ToDoList = () => {
             <div className={classNames(classes.todos__wrapper)}>
                 {todos.length
                   ? todos.map((todo, index) => (
-                    <ToDo text={todo.text} key={index}/>
+                        <ToDo id={todo.id}
+                              delete={deleteTodo}
+                              text={todo.text}
+                              key={index}/>
                   ))
                   : null}
             </div>
