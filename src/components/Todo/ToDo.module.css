@@ -20,6 +20,11 @@
   max-width: 614px;
 }
 
+.text__checked {
+  text-decoration: line-through;
+  opacity: .5;
+}
+
 .btn__wrapper {
   display: flex;
   flex-direction: row;

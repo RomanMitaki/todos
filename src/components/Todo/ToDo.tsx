@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import classes from './ToDo.module.css'
 import { classNames } from '../../assets/classNames/classNames'
 import Checkbox from '../Checkbox/Checkbox'
@@ -14,10 +14,12 @@ interface ToDoProps {
 }
 
 const ToDo = (props: ToDoProps) => {
+  const [isChecked, setIsChecked] = useState(false)
+  console.log(isChecked)
   return (
         <div className={classNames(classes.wrapper)}>
-            <Checkbox/>
-            <p className={classNames(classes.text)}>{props.text}</p>
+            <Checkbox setIsChecked={setIsChecked} isChecked={isChecked}/>
+            <p className={classNames(classes.text, { [`${classes.text__checked}`]: isChecked })}>{props.text}</p>
             <div className={classes.btn__wrapper}>
                 <Button>
                     <FiEdit2 size={'24px'} />
