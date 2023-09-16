@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import classes from './ToDo.module.css'
 import { classNames } from '../../assets/classNames/classNames'
 import Checkbox from '../Checkbox/Checkbox'
@@ -6,6 +6,7 @@ import { Button } from '../Button/Button'
 import { FiEdit2 } from 'react-icons/fi'
 import { RiDeleteBin6Line } from 'react-icons/ri'
 import EditForm from '../EditIForm/EditForm'
+import useOnClickOutside from '../../assets/hooks/useOnClickOutside'
 
 interface ToDoProps {
   className?: string
@@ -19,13 +20,15 @@ const ToDo = (props: ToDoProps) => {
   const { text, deleteTodo, id, updateTodo } = props
   const [isChecked, setIsChecked] = useState(false)
   const [isEditable, setIsEditable] = useState(false)
+  const wrapperRef = useRef(null)
 
+  useOnClickOutside(wrapperRef, () => { setIsEditable(false) })
   const handleEdit = () => {
     setIsEditable((prev) => !prev)
   }
   console.log(isEditable)
   return (
-        <div className={classNames(classes.wrapper)}>
+        <div className={classNames(classes.wrapper)} ref={wrapperRef}>
             <Checkbox setIsChecked={setIsChecked} isChecked={isChecked}/>
             {isEditable
               ? (<EditForm onSubmit={updateTodo} text={text} id={id} isEdit={setIsEditable}/>)
