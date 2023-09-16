@@ -1,16 +1,18 @@
 import React, { type ChangeEvent, type Dispatch, type FormEvent, type SetStateAction, useEffect, useRef, useState } from 'react'
+import { classNames } from '../../assets/classNames/classNames'
+import classes from './EditForm.module.css'
+import { type IToDo } from '../../types/types'
 
 interface EditFormProps {
   className?: string
-  text: string
-  id: string
-  onSubmit: (id: string, text: string) => void
+  todo: IToDo
+  onSubmit: (newTodo: IToDo) => void
   isEdit: Dispatch<SetStateAction<boolean>>
 }
 
 const EditForm = (props: EditFormProps) => {
-  const { text, id, onSubmit, isEdit } = props
-  const [input, setInput] = useState<string>(text)
+  const { todo, onSubmit, isEdit } = props
+  const [input, setInput] = useState<string>(todo.text)
 
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -23,17 +25,18 @@ const EditForm = (props: EditFormProps) => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    onSubmit(input, id)
+    onSubmit({ ...todo, text: input })
     isEdit((prev) => !prev)
     setInput('')
   }
 
   return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={classNames(classes.editForm)}>
           <input onChange={handleChange}
                  ref={inputRef}
                  value={input}
                  name='text'
+                 className={classNames(classes.formInput)}
           />
       </form>
   )

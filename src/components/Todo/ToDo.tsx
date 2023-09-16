@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { type Dispatch, type SetStateAction, useRef, useState } from 'react'
 import classes from './ToDo.module.css'
 import { classNames } from '../../assets/classNames/classNames'
 import Checkbox from '../Checkbox/Checkbox'
@@ -7,18 +7,20 @@ import { FiEdit2 } from 'react-icons/fi'
 import { RiDeleteBin6Line } from 'react-icons/ri'
 import EditForm from '../EditIForm/EditForm'
 import useOnClickOutside from '../../assets/hooks/useOnClickOutside'
+import { type IToDo, type IToDos } from '../../types/types'
 
 interface ToDoProps {
   className?: string
-  text: string
+  todo: IToDo
   deleteTodo: (id: string) => void
-  id: string
-  updateTodo: (id: string, text: string) => void
+  updateTodo: (newTodo: IToDo) => void
+  todos: IToDos
+  setTodos: Dispatch<SetStateAction<IToDos>>
 }
 
 const ToDo = (props: ToDoProps) => {
-  const { text, deleteTodo, id, updateTodo } = props
-  const [isChecked, setIsChecked] = useState(false)
+  const { deleteTodo, todo, updateTodo } = props
+  const { id, text, isCompleted } = todo
   const [isEditable, setIsEditable] = useState(false)
   const wrapperRef = useRef(null)
 
@@ -26,14 +28,18 @@ const ToDo = (props: ToDoProps) => {
   const handleEdit = () => {
     setIsEditable((prev) => !prev)
   }
-  console.log(isEditable)
+
+  const handleChecked = () => {
+    updateTodo({ ...todo, isCompleted: !isCompleted })
+  }
+
   return (
         <div className={classNames(classes.wrapper)} ref={wrapperRef}>
-            <Checkbox setIsChecked={setIsChecked} isChecked={isChecked}/>
+            <Checkbox isChecked={isCompleted} handleChecked={handleChecked} />
             {isEditable
-              ? (<EditForm onSubmit={updateTodo} text={text} id={id} isEdit={setIsEditable}/>)
+              ? (<EditForm onSubmit={updateTodo} todo={todo} isEdit={setIsEditable}/>)
               : (
-                <p className={classNames(classes.text, { [`${classes.text__checked}`]: isChecked })}>{text}</p>)}
+                <p className={classNames(classes.text, { [`${classes.text__checked}`]: isCompleted })}>{text}</p>)}
             <div className={classes.btn__wrapper}>
                 <Button onClick={handleEdit}>
                     <FiEdit2 size={'24px'} />

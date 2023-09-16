@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import classes from './ToDoList.module.css'
 import { classNames } from '../../assets/classNames/classNames'
 import NavBar from '../NavBar/NavBar'
@@ -8,8 +8,9 @@ import { type IToDo, type IToDos } from '../../types/types'
 
 const ToDoList = () => {
   const [todos, setTodos] = useState<IToDos>([])
-  const [deleted, setDeleted] = useState<IToDos>([])
-
+  const [renderedTodos, setRenderedTodos] = useState<IToDos>([])
+  const [isComletedTodos, setIsCompletedTodos] = useState(false)
+  const [isActiveTodos, setIsActiveTodos] = useState(false)
   const addTodo = (todo: IToDo) => {
     if (!todo.text || /^\s*$/.test(todo.text)) {
       return
@@ -18,24 +19,45 @@ const ToDoList = () => {
     setTodos(newTodos)
   }
 
-  const updateTodo = (text: string, id: string) => {
-    if (!text || /^\s*$/.test(text)) {
+  const completedTodos: IToDos = useMemo(
+    () => {
+      return todos.filter(todo => todo.isCompleted)
+    }, [todos]
+  )
+
+  const activeTodos: IToDos = useMemo(
+    () => {
+      return todos.filter(todo => !todo.isCompleted)
+    }, [todos]
+  )
+
+  useEffect(() => {
+    isComletedTodos
+      ? setRenderedTodos(completedTodos)
+      : isActiveTodos
+        ? setRenderedTodos(activeTodos)
+        : setRenderedTodos(todos)
+  }, [todos, activeTodos, completedTodos, isComletedTodos, isActiveTodos])
+
+  const renderedQtyTodos = useMemo(
+    () => {
+      return renderedTodos !== undefined
+        ? renderedTodos.length
+        : 0
+    }, [renderedTodos]
+  )
+  // console.log(completedTodos)
+
+  const updateTodo = (newTodo: IToDo) => {
+    if (!newTodo.text || /^\s*$/.test(newTodo.text)) {
       return
     }
-    const updatedTodos = todos.map(el => {
-      if (el.id === id) {
-        el.text = text
-      }
-      return el
-    })
-    setTodos(updatedTodos)
+    setTodos((todos) => todos.map((todo) => (todo.id === newTodo.id ? newTodo : todo)))
   }
 
   const deleteTodo = (id: string) => {
     const newTodos = [...todos].filter(todo => todo.id !== id)
-    const deletedTodos = [...todos].filter(todo => todo.id === id)
     setTodos(newTodos)
-    setDeleted(deletedTodos)
   }
 
   return (
@@ -44,16 +66,23 @@ const ToDoList = () => {
             <ToDoForm onSubmit={addTodo}/>
             <div className={classNames(classes.todos__wrapper)}>
                 {todos.length
-                  ? todos.map((todo, index) => (
-                        <ToDo id={todo.id}
+                  ? renderedTodos.map((todo, index) => (
+                        <ToDo todo={todo}
+                              todos={todos}
+                              setTodos={setTodos}
                               deleteTodo={deleteTodo}
                               updateTodo={updateTodo}
-                              text={todo.text}
-                              key={index}/>
+                              key={index}
+                        />
                   ))
                   : null}
             </div>
-            <NavBar/>
+            <NavBar isCompleted={setIsCompletedTodos}
+                    isActive={setIsActiveTodos}
+                    todos={todos}
+                    renderedQtyTodos={renderedQtyTodos}
+                    setTodos={setTodos}
+            />
         </div>
   )
 }

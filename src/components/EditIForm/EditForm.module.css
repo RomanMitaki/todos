@@ -1,0 +1,19 @@
+.editForm {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  flex-grow: 1;
+  max-width: 614px;
+}
+
+.formInput {
+  padding: 0 1em;
+  border-radius: 4px 0 0 4px;
+  border: 1px solid transparent;
+  outline: none;
+  background: transparent;
+  color: var(--input-color);
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+}

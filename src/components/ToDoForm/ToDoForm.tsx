@@ -26,7 +26,8 @@ const ToDoForm = ({ onSubmit }: ToDoFormProps) => {
     onSubmit({
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment
       id: uuidv4(),
-      text: input
+      text: input,
+      isCompleted: false
     })
     setInput('')
   }
