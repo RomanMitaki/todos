@@ -12,11 +12,23 @@ const ToDoList = () => {
 
   const addTodo = (todo: IToDo) => {
     if (!todo.text || /^\s*$/.test(todo.text)) {
-      console.log('oops')
       return
     }
     const newTodos = [todo, ...todos]
     setTodos(newTodos)
+  }
+
+  const updateTodo = (text: string, id: string) => {
+    if (!text || /^\s*$/.test(text)) {
+      return
+    }
+    const updatedTodos = todos.map(el => {
+      if (el.id === id) {
+        el.text = text
+      }
+      return el
+    })
+    setTodos(updatedTodos)
   }
 
   const deleteTodo = (id: string) => {
@@ -25,8 +37,7 @@ const ToDoList = () => {
     setTodos(newTodos)
     setDeleted(deletedTodos)
   }
-  console.log(deleted)
-  console.log(todos)
+
   return (
         <div className={classNames(classes.page, {}, [])}>
             <h1>todos</h1>
@@ -35,7 +46,8 @@ const ToDoList = () => {
                 {todos.length
                   ? todos.map((todo, index) => (
                         <ToDo id={todo.id}
-                              delete={deleteTodo}
+                              deleteTodo={deleteTodo}
+                              updateTodo={updateTodo}
                               text={todo.text}
                               key={index}/>
                   ))

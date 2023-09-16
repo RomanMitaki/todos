@@ -5,26 +5,37 @@ import Checkbox from '../Checkbox/Checkbox'
 import { Button } from '../Button/Button'
 import { FiEdit2 } from 'react-icons/fi'
 import { RiDeleteBin6Line } from 'react-icons/ri'
+import EditForm from '../EditIForm/EditForm'
 
 interface ToDoProps {
   className?: string
-  text?: string
-  delete: (id: string) => void
+  text: string
+  deleteTodo: (id: string) => void
   id: string
+  updateTodo: (id: string, text: string) => void
 }
 
 const ToDo = (props: ToDoProps) => {
+  const { text, deleteTodo, id, updateTodo } = props
   const [isChecked, setIsChecked] = useState(false)
-  console.log(isChecked)
+  const [isEditable, setIsEditable] = useState(false)
+
+  const handleEdit = () => {
+    setIsEditable((prev) => !prev)
+  }
+  console.log(isEditable)
   return (
         <div className={classNames(classes.wrapper)}>
             <Checkbox setIsChecked={setIsChecked} isChecked={isChecked}/>
-            <p className={classNames(classes.text, { [`${classes.text__checked}`]: isChecked })}>{props.text}</p>
+            {isEditable
+              ? (<EditForm onSubmit={updateTodo} text={text} id={id} isEdit={setIsEditable}/>)
+              : (
+                <p className={classNames(classes.text, { [`${classes.text__checked}`]: isChecked })}>{text}</p>)}
             <div className={classes.btn__wrapper}>
-                <Button>
+                <Button onClick={handleEdit}>
                     <FiEdit2 size={'24px'} />
                 </Button>
-                <Button onClick={() => { props.delete(props.id) }}>
+                <Button onClick={() => { deleteTodo(id) }}>
                     <RiDeleteBin6Line size={'24px'} />
                 </Button>
             </div>
