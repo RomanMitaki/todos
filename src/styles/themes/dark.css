@@ -1,8 +1,11 @@
 .app.dark {
-  --bg-color: linear-gradient(
-    90deg,
-    rgb(55 55 222) 0%,
-    rgb(4 5 22) 100%
-  );
+  --bg-color-main: #18122B;
+  --bg-color-secondary: #393053;
+  --primary-color: white;
+  --inner-borders: black;
+  --placeholder-color: grey;
+  --input-color: white;
+  --bg-color-btn: #443C68;
+  --bg-color-btn-secondary: #393053;
 
 }

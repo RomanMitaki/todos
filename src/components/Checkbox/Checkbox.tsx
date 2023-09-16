@@ -20,7 +20,7 @@ const Checkbox = (props: CheckboxProps) => {
                 onChange={handleChecked}
             />
             <span className={classNames(classes.checkbox__custom)}>
-               {isChecked ? <CheckIcon/> : null}
+               {isChecked ? <CheckIcon /> : null}
             </span>
         </label>
   )

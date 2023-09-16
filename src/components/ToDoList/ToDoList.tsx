@@ -9,7 +9,7 @@ import { type IToDo, type IToDos } from '../../types/types'
 const ToDoList = () => {
   const [todos, setTodos] = useState<IToDos>([])
   const [renderedTodos, setRenderedTodos] = useState<IToDos>([])
-  const [isComletedTodos, setIsCompletedTodos] = useState(false)
+  const [isCompletedTodos, setIsCompletedTodos] = useState(false)
   const [isActiveTodos, setIsActiveTodos] = useState(false)
   const addTodo = (todo: IToDo) => {
     if (!todo.text || /^\s*$/.test(todo.text)) {
@@ -32,12 +32,12 @@ const ToDoList = () => {
   )
 
   useEffect(() => {
-    isComletedTodos
+    isCompletedTodos
       ? setRenderedTodos(completedTodos)
       : isActiveTodos
         ? setRenderedTodos(activeTodos)
         : setRenderedTodos(todos)
-  }, [todos, activeTodos, completedTodos, isComletedTodos, isActiveTodos])
+  }, [todos, activeTodos, completedTodos, isCompletedTodos, isActiveTodos])
 
   const renderedQtyTodos = useMemo(
     () => {
@@ -46,7 +46,6 @@ const ToDoList = () => {
         : 0
     }, [renderedTodos]
   )
-  // console.log(completedTodos)
 
   const updateTodo = (newTodo: IToDo) => {
     if (!newTodo.text || /^\s*$/.test(newTodo.text)) {

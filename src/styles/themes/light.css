@@ -1,11 +1,11 @@
 .app.light {
-  --bg-color-main: #edc373;
-  --bg-color-secondary: #b18f6a;
-  --primary-color: #86a1a9;
-  --inner-borders: #6667AB;
-  --placeholder-color: #df88b7;
-  --input-color: #e4445e;
-  --bg-color-btn: #6667AB;
-  --bg-color-btn-secondary: #5859a9;
+  --bg-color-main: #C4DFDF;
+  --bg-color-secondary: #E3F4F4;
+  --primary-color: black;
+  --inner-borders: black;
+  --placeholder-color: grey;
+  --input-color: black;
+  --bg-color-btn: #F8F6F4;
+  --bg-color-btn-secondary: #E3F4F4;
 
 }

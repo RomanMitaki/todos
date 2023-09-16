@@ -38,13 +38,13 @@ const NavBar = (props: NavBarProps) => {
   return (
         <div className={classNames(classes.NavBar__wrapper)}>
             <p>{renderedQtyTodos !== 1 ? `${renderedQtyTodos} items left` : `${renderedQtyTodos} item left`}</p>
-            <div>
+            <div className={classNames(classes.btn__wrapper)}>
                 <Button onClick={handleAll}>All</Button>
                 <Button onClick={handleActive}>Active</Button>
                 <Button onClick={handleCompleted}>Completed</Button>
             </div>
             <Button onClick={toggleTheme}>
-                {theme === Theme.DARK ? <PiMoonThin color={'white'} size={'20px'}/> : <PiSunDimLight color={'white'} size={'20px'}/>}
+                {theme === Theme.DARK ? <PiMoonThin color={'white'} size={'20px'}/> : <PiSunDimLight color={'black'} size={'20px'}/>}
             </Button>
             <Button>Clear completed</Button>
         </div>
