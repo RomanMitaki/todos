@@ -18,6 +18,7 @@ const Checkbox = (props: CheckboxProps) => {
                 type="checkbox"
                 checked={isChecked}
                 onChange={handleChecked}
+                data-testid='Checkbox'
             />
             <span className={classNames(classes.checkbox__custom)}>
                {isChecked ? <CheckIcon /> : null}

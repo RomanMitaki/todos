@@ -33,7 +33,7 @@ const ToDoForm = ({ onSubmit }: ToDoFormProps) => {
   }
 
   return (
-        <form onSubmit={handleSubmit} className={classNames(classes.toDoForm)}>
+        <form data-testid='ToDoForm' onSubmit={handleSubmit} className={classNames(classes.toDoForm)}>
                 <input
                     className={classes.formInput}
                     placeholder={'What needs to be done?'}
@@ -41,8 +41,9 @@ const ToDoForm = ({ onSubmit }: ToDoFormProps) => {
                     ref={inputRef}
                     value={input}
                     name='text'
+                    data-testid='ToDoForm__input'
                 />
-          <Button className={classes.formButton}>
+          <Button className={classes.formButton} data-testid='ToDoForm__btn'>
             <span className={classNames(classes.formButton__accent)}>Add</span>
           </Button>
         </form>

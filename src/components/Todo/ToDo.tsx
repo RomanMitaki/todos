@@ -34,17 +34,17 @@ const ToDo = (props: ToDoProps) => {
   }
 
   return (
-        <div className={classNames(classes.wrapper)} ref={wrapperRef}>
+        <div data-testid='ToDo' className={classNames(classes.wrapper)} ref={wrapperRef}>
             <Checkbox isChecked={isCompleted} handleChecked={handleChecked} />
             {isEditable
               ? (<EditForm onSubmit={updateTodo} todo={todo} isEdit={setIsEditable}/>)
               : (
-                <p className={classNames(classes.text, { [`${classes.text__checked}`]: isCompleted })}>{text}</p>)}
+                <p data-testid='ToDo__text' className={classNames(classes.text, { [`${classes.text__checked}`]: isCompleted })}>{text}</p>)}
             <div className={classes.btn__wrapper}>
-                <Button onClick={handleEdit}>
+                <Button data-testid='ToDo__editBtn' onClick={handleEdit}>
                     <FiEdit2 size={'24px'} />
                 </Button>
-                <Button onClick={() => { deleteTodo(id) }}>
+                <Button data-testid='ToDo__deleteBtn' onClick={() => { deleteTodo(id) }}>
                     <RiDeleteBin6Line size={'24px'} />
                 </Button>
             </div>

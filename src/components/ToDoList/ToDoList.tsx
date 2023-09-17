@@ -77,7 +77,7 @@ const ToDoList = () => {
   }
 
   return (
-        <div className={classNames(classes.page, {}, [])}>
+        <div data-testid='ToDoList' className={classNames(classes.page, {}, [])}>
             <h1>todos</h1>
             <ToDoForm onSubmit={addTodo}/>
             <div className={classNames(classes.todos__wrapper)}>
@@ -89,6 +89,7 @@ const ToDoList = () => {
                               deleteTodo={deleteTodo}
                               updateTodo={updateTodo}
                               key={index}
+                              data-testid='ToDoList__todo'
                         />
                   ))
                   : <p>It is time to start planning!</p>}

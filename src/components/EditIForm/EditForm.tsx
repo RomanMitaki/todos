@@ -31,12 +31,13 @@ const EditForm = (props: EditFormProps) => {
   }
 
   return (
-      <form onSubmit={handleSubmit} className={classNames(classes.editForm)}>
+      <form data-testid='EditForm' onSubmit={handleSubmit} className={classNames(classes.editForm)}>
           <input onChange={handleChange}
                  ref={inputRef}
                  value={input}
                  name='text'
                  className={classNames(classes.formInput)}
+                 data-testid='EditForm__input'
           />
       </form>
   )
