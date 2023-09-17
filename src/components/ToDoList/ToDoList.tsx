@@ -59,6 +59,11 @@ const ToDoList = () => {
     setTodos(newTodos)
   }
 
+  const clearCompleteTodos = () => {
+    const newTodos = todos.filter(todo => !todo.isCompleted)
+    setTodos(newTodos)
+  }
+
   return (
         <div className={classNames(classes.page, {}, [])}>
             <h1>todos</h1>
@@ -74,13 +79,15 @@ const ToDoList = () => {
                               key={index}
                         />
                   ))
-                  : null}
+                  : <p>It is time to start planning!</p>}
             </div>
             <NavBar isCompleted={setIsCompletedTodos}
                     isActive={setIsActiveTodos}
                     todos={todos}
                     renderedQtyTodos={renderedQtyTodos}
                     setTodos={setTodos}
+                    clearCompletedTodos={clearCompleteTodos}
+
             />
         </div>
   )

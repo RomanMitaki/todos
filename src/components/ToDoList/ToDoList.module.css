@@ -28,4 +28,5 @@
   scrollbar-color: var(--bg-color-btn) var(--bg-color-main);
   scrollbar-width: thin;
   scroll-behavior: smooth;
+  flex-grow: 1;
 }

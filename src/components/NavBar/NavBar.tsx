@@ -14,10 +14,11 @@ interface NavBarProps {
   todos: IToDos
   setTodos: Dispatch<SetStateAction<IToDos>>
   renderedQtyTodos: number
+  clearCompletedTodos: () => void
 }
 
 const NavBar = (props: NavBarProps) => {
-  const { renderedQtyTodos, isActive, isCompleted } = props
+  const { clearCompletedTodos, renderedQtyTodos, isActive, isCompleted } = props
   const { theme, toggleTheme } = useTheme()
 
   const handleActive = () => {
@@ -46,7 +47,7 @@ const NavBar = (props: NavBarProps) => {
             <Button onClick={toggleTheme}>
                 {theme === Theme.DARK ? <PiMoonThin color={'white'} size={'20px'}/> : <PiSunDimLight color={'black'} size={'20px'}/>}
             </Button>
-            <Button>Clear completed</Button>
+            <Button onClick={() => { clearCompletedTodos() } }>Clear completed</Button>
         </div>
   )
 }
