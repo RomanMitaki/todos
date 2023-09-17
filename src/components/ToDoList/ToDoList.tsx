@@ -7,10 +7,16 @@ import ToDo from '../Todo/ToDo'
 import { type IToDo, type IToDos } from '../../types/types'
 
 const ToDoList = () => {
-  const [todos, setTodos] = useState<IToDos>([])
+  const getTodos = () => {
+    const todos = localStorage.getItem('todos')
+    return todos ? JSON.parse(todos) as IToDos : []
+  }
+
+  const [todos, setTodos] = useState<IToDos>(getTodos())
   const [renderedTodos, setRenderedTodos] = useState<IToDos>([])
   const [isCompletedTodos, setIsCompletedTodos] = useState(false)
   const [isActiveTodos, setIsActiveTodos] = useState(false)
+
   const addTodo = (todo: IToDo) => {
     if (!todo.text || /^\s*$/.test(todo.text)) {
       return
@@ -31,6 +37,14 @@ const ToDoList = () => {
     }, [todos]
   )
 
+  const renderedQtyTodos = useMemo(
+    () => {
+      return renderedTodos !== undefined
+        ? renderedTodos.length
+        : 0
+    }, [renderedTodos]
+  )
+
   useEffect(() => {
     isCompletedTodos
       ? setRenderedTodos(completedTodos)
@@ -39,13 +53,11 @@ const ToDoList = () => {
         : setRenderedTodos(todos)
   }, [todos, activeTodos, completedTodos, isCompletedTodos, isActiveTodos])
 
-  const renderedQtyTodos = useMemo(
-    () => {
-      return renderedTodos !== undefined
-        ? renderedTodos.length
-        : 0
-    }, [renderedTodos]
-  )
+  useEffect(() => {
+    if (todos) {
+      localStorage.setItem('todos', JSON.stringify(todos))
+    }
+  }, [todos])
 
   const updateTodo = (newTodo: IToDo) => {
     if (!newTodo.text || /^\s*$/.test(newTodo.text)) {
